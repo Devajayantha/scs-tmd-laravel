@@ -18,8 +18,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/notes', [App\Http\Controllers\NoteController::class, 'index'])->name('notes.index');
     Route::get('/notes/create', [App\Http\Controllers\NoteController::class, 'create'])->name('notes.create');
-    Route::get('/notes/{note}/show', [App\Http\Controllers\NoteController::class, 'show'])->name('notes.show');
-    Route::get('/notes/{note}/edit', [App\Http\Controllers\NoteController::class, 'edit'])->name('notes.edit');
+    Route::get('/notes/{note}/show', [App\Http\Controllers\NoteController::class, 'show'])->name('notes.show')->middleware('can:view,note');
+    Route::get('/notes/{note}/edit', [App\Http\Controllers\NoteController::class, 'edit'])->name('notes.edit')->middleware('can:view,note');
 
     Route::post('/notes', [App\Http\Controllers\NoteController::class, 'store'])->name('notes.store');
     Route::patch('/notes/{note}', [App\Http\Controllers\NoteController::class, 'update'])->name('notes.update');
